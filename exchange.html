@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Currency Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</div>
+
+    <div class="container">
+        <h2>Currency Converter</h2>
+
+       
+        <div class="inline">
+            <select id="fromCurrency" onchange="currencyChanged()">
+                <option value="CNY">🇨🇳 Chinese Yuan (CNY)</option>
+                <option value="INR">🇮🇳 Indian Rupee (INR)</option>
+                <option value="JPY">🇯🇵 Japanese Yen (JPY)</option>
+                <option value="KRW">🇰🇷 South Korean Won (KRW)</option>
+                <option value="MYR">🇲🇾 Malaysian Ringgit (MYR)</option>
+            </select>
+            
+            <button class="switch-icon" onclick="switchCurrencies()" title="Switch currencies">⇄</button>
+
+            <select id="toCurrency" onchange="currencyChanged()">
+                <option value="ZMW">🇿🇲 Zambian Kwacha (ZMW)</option>
+                <option value="CNY">🇨🇳 Chinese Yuan (CNY)</option>
+                <option value="INR">🇮🇳 Indian Rupee (INR)</option>
+                <option value="JPY">🇯🇵 Japanese Yen (JPY)</option>
+                <option value="KRW">🇰🇷 South Korean Won (KRW)</option>
+                <option value="MYR">🇲🇾 Malaysian Ringgit (MYR)</option>
+            </select>
+        </div>
+
+     
+        <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
+        <button onclick="convertCurrency()">Convert</button>
+
+        <!-- Loading Indicator -->
+        <div class="loader" id="loader"></div>
+
+       
+        <h3>Converted Amount: <span id="result">0</span></h3>
+        <div class="rate-comparison">
+            <div>Current rate: <span id="currentRate">--</span></div>
+            <div>📈 7-day trend: <span class="percentage-change" id="percentageChange">--</span></div>
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <!-- Historical Chart -->
+        <div class="trend-select">
+            <label for="trendRange">Show trend:</label>
+            <select id="trendRange" onchange="updateTrendRange()">
+                <option value="7">Last 7 Days</option>
+                <option value="30">Last 30 Days</option>
+                <option value="90">Last 90 Days</option>
+            </select>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="currencyChart"></canvas>
+        </div>
+
+        <!-- Conversion History -->
+        <div class="conversion-history">
+            <h4>Recent Conversions</h4>
+            <ul id="historyList">
+                <!--Results froms the js go printed here -->
+            </ul>
+        </div>
+
+        <!-- Export to csv-->
+        <div class="history-controls">
+            <button class="export-btn" onclick="exportToCSV()">⬇ Export History to CSV</button>
+        </div>
+
+        <footer>
+            Exchange rates powered by 
+            <a href="https://exchangerate-api.com/" target="_blank">ExchangeRate-API</a>
+        </footer>
+    </div>
+
+    <script src="script.js "></script>
+</body>
+</html>
